@@ -22,5 +22,3 @@ WORKDIR /app
 COPY --from=0 /build /app
 
 CMD ["node", "dist/index.js"]
-
-EXPOSE 3000
