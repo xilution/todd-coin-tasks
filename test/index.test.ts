@@ -1,22 +1,25 @@
-import { sayHello } from "../src";
+import { handler } from "../src";
+import Chance from "chance";
+
+const chance = new Chance();
 
 describe("Index Tests", () => {
   describe("when saying hello", () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let actual: any;
+    let operation: string;
+
     beforeEach(function () {
+      operation = chance.string();
+      delete process.env.OPERATION;
+      process.env.OPERATION = operation;
+
       jest.spyOn(console, "log").mockImplementation(() => {});
 
-      actual = sayHello();
-    });
-
-    it("should return undefined", function () {
-      expect(actual).toBeUndefined();
+      handler();
     });
 
     it("should call console.log", function () {
       expect(console.log).toHaveBeenCalledTimes(1);
-      expect(console.log).toBeCalledWith("Hello");
+      expect(console.log).toBeCalledWith(`Operation: ${operation}`);
     });
   });
 });
