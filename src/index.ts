@@ -1,7 +1,6 @@
-export const handler = (): void => {
-  const operation = process.env.OPERATION;
+import { handleTask } from "./handle-task";
 
-  console.log(`Operation: ${operation}`);
-};
-
-handler();
+handleTask()
+  .then(() => console.log("All Done!"))
+  .catch((error: Error) => console.error(error.message))
+  .finally();
