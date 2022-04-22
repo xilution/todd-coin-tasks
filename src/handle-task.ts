@@ -11,7 +11,7 @@ export const handleTask = async (): Promise<void> => {
 
   if (operation === undefined) {
     throw new Error(
-      `unable to handle task b/c the OPERATION environment variable was not set`
+      `unable to handle task because the OPERATION environment variable was not set`
     );
   }
 
@@ -19,7 +19,7 @@ export const handleTask = async (): Promise<void> => {
 
   if (operationFn === undefined) {
     throw new Error(
-      `unable to handle task b/c the operation passed: ${operation} should be one of ${_.keys(
+      `unable to handle task because the operation passed: ${operation} should be one of ${_.keys(
         operationMap
       )}`
     );
