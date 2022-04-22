@@ -1,4 +1,4 @@
-import { doSync } from "../dist/operations";
+import { doSync } from "../src/operations";
 
 describe("Operations Tests", function () {
   describe("when doing sync operation", function () {
