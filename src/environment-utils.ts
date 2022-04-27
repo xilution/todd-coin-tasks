@@ -1,11 +1,35 @@
-import { MiningSettings } from "./types";
-import { GENESIS_PARTICIPANT_PUBLIC_KEY } from "@xilution/todd-coin-constants";
+import { InitSettings, MiningSettings } from "./types";
 
-const DEFAULT_MINER_PUBLIC_KEY = GENESIS_PARTICIPANT_PUBLIC_KEY;
+const DEFAULT_GENESIS_FIRST_NAME = "John";
+const DEFAULT_GENESIS_LAST_NAME = "Doe";
+const DEFAULT_GENESIS_EMAIL = "jdoe@example.com";
+const DEFAULT_GENESIS_PASSWORD = "secret";
+
+export const getInitSettings = (): InitSettings => {
+  const genesisFirstName =
+    process.env.GENESIS_FIRST_NAME || DEFAULT_GENESIS_FIRST_NAME;
+  const genesisLastName =
+    process.env.GENESIS_LAST_NAME || DEFAULT_GENESIS_LAST_NAME;
+  const genesisEmail = process.env.GENESIS_EMAIL || DEFAULT_GENESIS_EMAIL;
+  const genesisPassword =
+    process.env.GENESIS_PASSWORD || DEFAULT_GENESIS_PASSWORD;
+
+  return {
+    genesisFirstName,
+    genesisLastName,
+    genesisEmail,
+    genesisPassword,
+  };
+};
 
 export const getMiningSettings = (): MiningSettings => {
-  const minerPublicKey =
-    process.env.MINER_PUBLIC_KEY || DEFAULT_MINER_PUBLIC_KEY;
+  const minerParticipantId = process.env.MINER_PARTICIPANT_ID;
 
-  return { minerPublicKey };
+  if (minerParticipantId === undefined) {
+    throw new Error(
+      "unable to get mining settings because the MINER_PARTICIPANT_ID environment variable was not set"
+    );
+  }
+
+  return { minerPublicKey: minerParticipantId };
 };

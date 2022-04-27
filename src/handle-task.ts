@@ -1,9 +1,14 @@
-import { doMine, doSync } from "./operations";
+import doInit from "./services/init-service";
+import doMine from "./services/mine-service";
+import doSync from "./services/sync-service";
+import doValidate from "./services/validation-service";
 import _ from "lodash";
 
 const operationMap: { [operation: string]: () => Promise<void> } = {
+  INIT: doInit,
   MINE: doMine,
   SYNC: doSync,
+  VALIDATE: doValidate,
 };
 
 export const handleTask = async (): Promise<void> => {
