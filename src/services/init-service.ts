@@ -3,7 +3,7 @@ import {
   DbClient,
   participantsBroker,
   transactionsBroker,
-} from "../../../todd-coin-brokers";
+} from "@xilution/todd-coin-brokers";
 import { getInitSettings } from "../environment-utils";
 import {
   Block,

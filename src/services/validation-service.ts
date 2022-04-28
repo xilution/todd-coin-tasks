@@ -1,4 +1,4 @@
-import { blocksBroker, DbClient } from "../../../todd-coin-brokers";
+import { blocksBroker, DbClient } from "@xilution/todd-coin-brokers";
 import { getDbClient } from "./db-utils";
 import { DEFAULT_PAGE_SIZE } from "@xilution/todd-coin-constants";
 import { blockchainUtils } from "@xilution/todd-coin-utils";

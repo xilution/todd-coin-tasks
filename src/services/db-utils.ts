@@ -2,7 +2,7 @@ import {
   DatabaseSettings,
   DbClient,
   environmentUtils,
-} from "../../../todd-coin-brokers";
+} from "@xilution/todd-coin-brokers";
 import { Client } from "pg";
 
 export const createDatabase = async (): Promise<void> => {

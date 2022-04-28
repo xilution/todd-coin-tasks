@@ -2,7 +2,7 @@ import {
   blocksBroker,
   DbClient,
   transactionsBroker,
-} from "../../../todd-coin-brokers";
+} from "@xilution/todd-coin-brokers";
 import { Block } from "@xilution/todd-coin-types";
 import _ from "lodash";
 import {
