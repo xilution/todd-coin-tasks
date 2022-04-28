@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/xilution/todd-coin-tasks/compare/v1.1.0...v1.2.0) (2022-04-28)
+
+
+### Bug Fixes
+
+* fixed import references ([e1f70c4](https://github.com/xilution/todd-coin-tasks/commit/e1f70c4fb9e9b965b1f9cbfe1397399fa7cb6a40))
+
+
+### Features
+
+* added more operations ([1351ff8](https://github.com/xilution/todd-coin-tasks/commit/1351ff8cabc9f9fe10b8072aa39a27baee8ac17e))
+
 # [1.1.0](https://github.com/xilution/todd-coin-tasks/compare/v1.0.0...v1.1.0) (2022-04-22)
 
 
