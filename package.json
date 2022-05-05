@@ -10,6 +10,7 @@
     "docker-restart": "docker-compose -f docker-compose.yml restart",
     "docker-stop": "docker-compose -f docker-compose.yml down",
     "docker-logs-db": "docker-compose logs -f db",
+    "docker-init": "docker run -e OPERATION=INIT -e DB_HOST=host.docker.internal xilution/todd-coin-tasks",
     "docker-mine": "docker run -e OPERATION=MINE -e DB_HOST=host.docker.internal xilution/todd-coin-tasks",
     "docker-sync": "docker run -e OPERATION=SYNC -e DB_HOST=host.docker.internal xilution/todd-coin-tasks",
     "clean": "rm -rf ./coverage ./dist",
