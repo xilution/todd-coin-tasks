@@ -40,6 +40,8 @@ export default async () => {
 
   await participantsBroker.createParticipant(dbClient, genesisParticipant);
 
+  // todo - need to create the participant key separate from create participant
+
   const genesisBlock: Block =
     genesisUtils.createGenesisBlock(genesisParticipant);
 
