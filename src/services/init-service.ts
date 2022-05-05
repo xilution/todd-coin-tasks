@@ -1,6 +1,7 @@
 import {
   blocksBroker,
   DbClient,
+  participantKeysBroker,
   participantsBroker,
   transactionsBroker,
 } from "@xilution/todd-coin-brokers";
@@ -8,6 +9,7 @@ import { getInitSettings } from "../environment-utils";
 import {
   Block,
   Participant,
+  ParticipantKey,
   PendingTransaction,
   TransactionDetails,
 } from "@xilution/todd-coin-types";
@@ -40,7 +42,17 @@ export default async () => {
 
   await participantsBroker.createParticipant(dbClient, genesisParticipant);
 
-  // todo - need to create the participant key separate from create participant
+  if (genesisParticipant.keys !== undefined) {
+    genesisParticipant.keys.map(
+      async (genesisParticipantKey: ParticipantKey) => {
+        return await participantKeysBroker.createParticipantKey(
+          dbClient,
+          genesisParticipant,
+          genesisParticipantKey
+        );
+      }
+    );
+  }
 
   const genesisBlock: Block =
     genesisUtils.createGenesisBlock(genesisParticipant);
