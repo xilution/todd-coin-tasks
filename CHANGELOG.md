@@ -1,3 +1,10 @@
+## [1.8.1](https://github.com/xilution/todd-coin-tasks/compare/v1.8.0...v1.8.1) (2022-05-05)
+
+
+### Bug Fixes
+
+* created genesis participant keys separately ([8862f1e](https://github.com/xilution/todd-coin-tasks/commit/8862f1eeb98e767ed045f08be8cfbb0b79f12564))
+
 # [1.8.0](https://github.com/xilution/todd-coin-tasks/compare/v1.7.0...v1.8.0) (2022-05-05)
 
 
