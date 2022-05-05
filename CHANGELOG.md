@@ -1,3 +1,11 @@
+# [1.8.0](https://github.com/xilution/todd-coin-tasks/compare/v1.7.0...v1.8.0) (2022-05-05)
+
+
+### Features
+
+* bumped todd-coin-brokers version ([e9c1e81](https://github.com/xilution/todd-coin-tasks/commit/e9c1e8147f81dbaf691373b3bff947e11f29e40d))
+* made miner public key optional ([8ce27f8](https://github.com/xilution/todd-coin-tasks/commit/8ce27f895b808e23c471f8f1cab21515ef4a30c8))
+
 # [1.7.0](https://github.com/xilution/todd-coin-tasks/compare/v1.6.0...v1.7.0) (2022-05-05)
 
 
