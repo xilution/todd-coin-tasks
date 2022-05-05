@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/xilution/todd-coin-tasks/compare/v1.6.0...v1.7.0) (2022-05-05)
+
+
+### Features
+
+* bumped todd-coin-brokers, todd-coin-types and todd-coin-utils versions ([10c2dc5](https://github.com/xilution/todd-coin-tasks/commit/10c2dc50bf4341fdc9bcd899989d2d70fcce8693))
+
 # [1.6.0](https://github.com/xilution/todd-coin-tasks/compare/v1.5.0...v1.6.0) (2022-05-04)
 
 
