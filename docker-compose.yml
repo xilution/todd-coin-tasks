@@ -10,6 +10,6 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: secret
     volumes:
-      - ./pgdata:/var/lib/postgresql/data
+      - ~/.todd-coin/pg-data:/var/lib/postgresql/data
 volumes:
-  pgdata:
+  pg-data:
