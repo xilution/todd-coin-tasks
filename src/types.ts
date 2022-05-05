@@ -6,5 +6,5 @@ export interface InitSettings {
 }
 
 export interface MiningSettings {
-  minerPublicKey: string;
+  minerParticipantId?: string;
 }

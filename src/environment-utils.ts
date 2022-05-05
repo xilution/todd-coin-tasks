@@ -25,11 +25,5 @@ export const getInitSettings = (): InitSettings => {
 export const getMiningSettings = (): MiningSettings => {
   const minerParticipantId = process.env.MINER_PARTICIPANT_ID;
 
-  if (minerParticipantId === undefined) {
-    throw new Error(
-      "unable to get mining settings because the MINER_PARTICIPANT_ID environment variable was not set"
-    );
-  }
-
-  return { minerPublicKey: minerParticipantId };
+  return { minerParticipantId };
 };

@@ -46,9 +46,9 @@ export default async () => {
 
   const newBlock: Block = await blockUtils.mineNewBlock(latestBlock, rows);
 
-  const { minerPublicKey } = getMiningSettings();
+  const { minerParticipantId } = getMiningSettings();
 
-  await blocksBroker.createBlock(dbClient, newBlock, minerPublicKey);
+  await blocksBroker.createBlock(dbClient, newBlock, minerParticipantId);
 
   const duration = dayjs().diff(now);
 
