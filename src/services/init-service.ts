@@ -1,19 +1,23 @@
 import {
   blocksBroker,
-  DbClient,
+  DbClient, organizationsBroker,
   participantKeysBroker,
   participantsBroker,
   transactionsBroker,
 } from "@xilution/todd-coin-brokers";
 import { getInitSettings } from "../environment-utils";
 import {
-  Block,
+  Block, Organization,
   Participant,
   ParticipantKey,
   PendingTransaction,
+  SignedTransaction,
   TransactionDetails,
 } from "@xilution/todd-coin-types";
-import { genesisUtils } from "@xilution/todd-coin-utils";
+import {
+  genesisUtils,
+  transactionUtils,
+} from "@xilution/todd-coin-utils";
 import { createDatabase, getDbClient } from "./db-utils";
 import dayjs from "dayjs";
 
@@ -26,6 +30,14 @@ export default async () => {
   const { genesisFirstName, genesisLastName, genesisEmail, genesisPassword } =
     getInitSettings();
 
+  const toddCoinOrganization: Organization = genesisUtils.createToddCoinOrganization();
+
+  const createdOrganization: Organization | undefined = await organizationsBroker.createOrganization(dbClient, toddCoinOrganization);
+
+  if (createdOrganization === undefined) {
+    throw new Error("init failed because unable to create the Todd Coin organization");
+  }
+
   const genesisParticipant: Participant = genesisUtils.createGenesisParticipant(
     genesisFirstName,
     genesisLastName,
@@ -36,26 +48,40 @@ export default async () => {
   console.log(
     `Created genesis participant: ${JSON.stringify(genesisParticipant)}`
   );
+
+  const genesisParticipantKey: ParticipantKey =
+    genesisUtils.createGenesisParticipantKey();
+
+  console.log(
+    `Created genesis participant key: ${JSON.stringify(genesisParticipantKey)}`
+  );
+
   console.log(
     `Please change the genesis user's password and generate a new participant key ASAP!`
   );
 
-  await participantsBroker.createParticipant(dbClient, genesisParticipant);
+  const createdParticipant: Participant | undefined = await participantsBroker.createParticipant(dbClient, genesisParticipant);
 
-  if (genesisParticipant.keys !== undefined) {
-    genesisParticipant.keys.map(
-      async (genesisParticipantKey: ParticipantKey) => {
-        return await participantKeysBroker.createParticipantKey(
-          dbClient,
-          genesisParticipant,
-          genesisParticipantKey
-        );
-      }
-    );
+  if (createdParticipant === undefined) {
+    throw new Error("init failed because unable to create the genesis participant");
   }
 
-  const genesisBlock: Block =
-    genesisUtils.createGenesisBlock(genesisParticipant);
+  const createdParticipantKey: ParticipantKey | undefined = await participantKeysBroker.createParticipantKey(
+    dbClient,
+    genesisParticipant,
+    genesisParticipantKey
+  );
+
+  if (createdParticipantKey === undefined) {
+    throw new Error("init failed because unable to create the genesis participant key");
+  }
+
+  const genesisBlock: Block = genesisUtils.createGenesisBlock(
+    genesisParticipant,
+    genesisParticipant,
+    genesisParticipantKey,
+    genesisParticipantKey.private as string
+  );
 
   await Promise.all(
     genesisBlock.transactions.map(
@@ -70,17 +96,26 @@ export default async () => {
           dbClient,
           genesisTransaction
         );
+
         if (pendingTransaction !== undefined) {
-          await transactionsBroker.createSignedTransaction(dbClient, {
-            ...pendingTransaction,
-            goodPoints: genesisTransaction.goodPoints,
-          });
+          const signedTransaction: SignedTransaction<TransactionDetails> =
+            transactionUtils.signTransaction(
+              pendingTransaction,
+              genesisTransaction.goodPoints,
+              createdParticipantKey,
+              genesisParticipantKey.private as string
+            );
+
+          await transactionsBroker.createSignedTransaction(
+            dbClient,
+            signedTransaction
+          );
         }
       }
     )
   );
 
-  const genesisParticipantId = genesisParticipant.id as string;
+  const genesisParticipantId = createdParticipant.id as string;
 
   await blocksBroker.createBlock(dbClient, genesisBlock, genesisParticipantId);
 
