@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/xilution/todd-coin-tasks/compare/v1.10.0...v1.11.0) (2022-05-08)
+
+
+### Features
+
+* updated to new brokers ([71cb9d9](https://github.com/xilution/todd-coin-tasks/commit/71cb9d9555c565abb7b59eab550e90d2ee01f513))
+
 # [1.10.0](https://github.com/xilution/todd-coin-tasks/compare/v1.9.0...v1.10.0) (2022-05-07)
 
 
