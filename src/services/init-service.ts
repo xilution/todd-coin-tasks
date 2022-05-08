@@ -1,23 +1,22 @@
 import {
   blocksBroker,
-  DbClient, organizationsBroker,
+  DbClient,
+  organizationsBroker,
   participantKeysBroker,
   participantsBroker,
   transactionsBroker,
 } from "@xilution/todd-coin-brokers";
 import { getInitSettings } from "../environment-utils";
 import {
-  Block, Organization,
+  Block,
+  Organization,
   Participant,
   ParticipantKey,
   PendingTransaction,
   SignedTransaction,
   TransactionDetails,
 } from "@xilution/todd-coin-types";
-import {
-  genesisUtils,
-  transactionUtils,
-} from "@xilution/todd-coin-utils";
+import { genesisUtils, transactionUtils } from "@xilution/todd-coin-utils";
 import { createDatabase, getDbClient } from "./db-utils";
 import dayjs from "dayjs";
 
@@ -30,12 +29,19 @@ export default async () => {
   const { genesisFirstName, genesisLastName, genesisEmail, genesisPassword } =
     getInitSettings();
 
-  const toddCoinOrganization: Organization = genesisUtils.createToddCoinOrganization();
+  const toddCoinOrganization: Organization =
+    genesisUtils.createToddCoinOrganization();
 
-  const createdOrganization: Organization | undefined = await organizationsBroker.createOrganization(dbClient, toddCoinOrganization);
+  const createdOrganization: Organization | undefined =
+    await organizationsBroker.createOrganization(
+      dbClient,
+      toddCoinOrganization
+    );
 
   if (createdOrganization === undefined) {
-    throw new Error("init failed because unable to create the Todd Coin organization");
+    throw new Error(
+      "init failed because unable to create the Todd Coin organization"
+    );
   }
 
   const genesisParticipant: Participant = genesisUtils.createGenesisParticipant(
@@ -60,20 +66,26 @@ export default async () => {
     `Please change the genesis user's password and generate a new participant key ASAP!`
   );
 
-  const createdParticipant: Participant | undefined = await participantsBroker.createParticipant(dbClient, genesisParticipant);
+  const createdParticipant: Participant | undefined =
+    await participantsBroker.createParticipant(dbClient, genesisParticipant);
 
   if (createdParticipant === undefined) {
-    throw new Error("init failed because unable to create the genesis participant");
+    throw new Error(
+      "init failed because unable to create the genesis participant"
+    );
   }
 
-  const createdParticipantKey: ParticipantKey | undefined = await participantKeysBroker.createParticipantKey(
-    dbClient,
-    genesisParticipant,
-    genesisParticipantKey
-  );
+  const createdParticipantKey: ParticipantKey | undefined =
+    await participantKeysBroker.createParticipantKey(
+      dbClient,
+      genesisParticipant,
+      genesisParticipantKey
+    );
 
   if (createdParticipantKey === undefined) {
-    throw new Error("init failed because unable to create the genesis participant key");
+    throw new Error(
+      "init failed because unable to create the genesis participant key"
+    );
   }
 
   const genesisBlock: Block = genesisUtils.createGenesisBlock(
