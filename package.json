@@ -41,7 +41,7 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@types/pg": "^8.6.5",
-    "@xilution/todd-coin-brokers": "^5.1.0",
+    "@xilution/todd-coin-brokers": "^5.2.0",
     "@xilution/todd-coin-constants": "^2.1.0",
     "@xilution/todd-coin-utils": "^7.2.0",
     "dayjs": "^1.11.1",
