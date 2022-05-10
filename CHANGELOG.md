@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/xilution/todd-coin-tasks/compare/v1.12.0...v1.13.0) (2022-05-10)
+
+
+### Features
+
+* moved todd-coin-types back to deps ([9869c9e](https://github.com/xilution/todd-coin-tasks/commit/9869c9e63894b9868622a8207434f46a2a61bb8d))
+
 # [1.12.0](https://github.com/xilution/todd-coin-tasks/compare/v1.11.0...v1.12.0) (2022-05-10)
 
 
