@@ -39,6 +39,7 @@ export default async () => {
     );
 
   if (createdOrganization === undefined) {
+    await dbClient.sequelize?.close();
     throw new Error(
       "init failed because unable to create the Todd Coin organization"
     );
@@ -70,6 +71,7 @@ export default async () => {
     await participantsBroker.createParticipant(dbClient, genesisParticipant);
 
   if (createdParticipant === undefined) {
+    await dbClient.sequelize?.close();
     throw new Error(
       "init failed because unable to create the genesis participant"
     );
@@ -83,6 +85,7 @@ export default async () => {
     );
 
   if (createdParticipantKey === undefined) {
+    await dbClient.sequelize?.close();
     throw new Error(
       "init failed because unable to create the genesis participant key"
     );

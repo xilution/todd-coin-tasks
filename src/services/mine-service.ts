@@ -24,6 +24,7 @@ export default async () => {
 
   if (latestBlock === undefined) {
     console.log(`Unable to mine because the latest block was undefined`);
+    await dbClient.sequelize?.close();
     return;
   }
 
@@ -41,6 +42,7 @@ export default async () => {
 
   if (rows.length === 0) {
     console.log("Unable to mine because there are no signed transactions");
+    await dbClient.sequelize?.close();
     return;
   }
 
@@ -55,4 +57,5 @@ export default async () => {
   console.log(`All Done! Mining took ${duration} ms.`); // todo - log metrics to Prometheus
 
   await dbClient.sequelize?.close();
+  return;
 };

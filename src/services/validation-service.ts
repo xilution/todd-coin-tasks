@@ -21,6 +21,7 @@ export default async () => {
     const valid = blockchainUtils.isChainValid(rows);
 
     if (!valid) {
+      await dbClient.sequelize?.close();
       throw new Error(
         `Found invalid blocks at page ${pageNumber}. Used page size: ${pageSize}.`
       );
