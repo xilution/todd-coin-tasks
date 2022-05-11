@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/xilution/todd-coin-tasks/compare/v1.13.0...v1.13.1) (2022-05-11)
+
+
+### Bug Fixes
+
+* closed sequelize before returning or throwing ([00ece69](https://github.com/xilution/todd-coin-tasks/commit/00ece69352e7ed66109bd257a05b42c3691665b2))
+
 # [1.13.0](https://github.com/xilution/todd-coin-tasks/compare/v1.12.0...v1.13.0) (2022-05-10)
 
 
