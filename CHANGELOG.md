@@ -1,3 +1,10 @@
+## [1.13.2](https://github.com/xilution/todd-coin-tasks/compare/v1.13.1...v1.13.2) (2022-05-14)
+
+
+### Bug Fixes
+
+* fixed signing transactions ([d01f069](https://github.com/xilution/todd-coin-tasks/commit/d01f069fb935881e9e3e05335565ad48f2c2a608))
+
 ## [1.13.1](https://github.com/xilution/todd-coin-tasks/compare/v1.13.0...v1.13.1) (2022-05-11)
 
 
