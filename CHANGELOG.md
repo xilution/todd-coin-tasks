@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/xilution/todd-coin-tasks/compare/v1.13.2...v1.14.0) (2022-06-09)
+
+
+### Features
+
+* updated @xilution/todd-coin-utils version ([a435768](https://github.com/xilution/todd-coin-tasks/commit/a4357685bcac0053ce119f7c8ad9fd77dca9c66a))
+
 ## [1.13.2](https://github.com/xilution/todd-coin-tasks/compare/v1.13.1...v1.13.2) (2022-05-14)
 
 
